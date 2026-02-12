@@ -1,41 +1,19 @@
-type Address = {
-        street: string,
-        city: string,
-        country: string
-    }
 
-type Person = {
-    name: string,
-    age: number,
-    isStudent: boolean,
-    address?: Address
+//literals
+// let myName1 = "Bob"
+
+// const myName2 = "Nancy"
+
+//unions
+type UserRole = 'guest' | 'member' | 'admin'
+let userRole: UserRole = "admin"
+
+type User = {
+    username: string,
+    role: 'guest' | 'member' | 'admin'
 }
 
-
-
-
-
-
-let person: Person = {
-    name: "Joe",
-    age: 42,
-    isStudent: true,
-    address: {
-        street: "123 Main",
-        city: "Anytown",
-        country: "USA"
-    }  
+const user: User = {
+    username: 'Erick',
+    role: 'guest'
 }
-
-let person2: Person = {
-    name: "Jill",
-    age: 66,
-    isStudent: false,
-    address: {
-        street: "123 Main",
-        city: "Anytown",
-        country: "USA"
-    }
-}
-
-let people: Person[] = [person, person2]
