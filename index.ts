@@ -1,5 +1,5 @@
 type Pizza = {
-    id: number
+    id?: number
     name: string,
     price: number
 }
@@ -22,13 +22,19 @@ const menu: Pizza[] = [
 
 let cashInRegister = 100
 let nextOrderId = 1
+let nextPizzaId = 4
 const orderQueue: Order[] = []
 
-function addNewPizza(pizzaObj: Pizza) {
-    menu.push(pizzaObj)
+function addNewPizza(pizzaObj: Omit<Pizza, 'id'>): Pizza {
+    const newPizza: Pizza = {
+        id: nextPizzaId++,
+        ...pizzaObj
+    }
+    menu.push(newPizza)
+    return newPizza
 }
 
-function placeOrder(pizzaName: string) {
+function placeOrder(pizzaName: string): Order | undefined {
     const selectedPizza = menu.find((pizzaObj) => pizzaObj.name === pizzaName)
     if (!selectedPizza) {
         console.error(`${pizzaName} does not exist in the menu`)
@@ -41,7 +47,7 @@ function placeOrder(pizzaName: string) {
 }
 
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order |undefined {
     const order = orderQueue.find((order) => order.id === orderId)
     if (!order) {
         return
@@ -52,7 +58,7 @@ function completeOrder(orderId: number) {
 
 type PizzaDetail = string | number
 
-export function getPizzaDetail(identifier: string | number){
+export function getPizzaDetail(identifier: string | number): Pizza | undefined {
     if (typeof identifier === "string") {
         return menu.find((pizza) => pizza.name.toLowerCase() === identifier.toLowerCase() )
     } else if (typeof identifier === 'number') {
@@ -63,17 +69,16 @@ export function getPizzaDetail(identifier: string | number){
 }
 
 
-// addNewPizza({id: 5, name: "Chicken Bacon", price: 12})
-// addNewPizza({id: 6, name: "BBQ chicken", price: 12})
-// addNewPizza({id: 7, name: "Spicy Sausage", price: 11})
+addNewPizza({name: "Chicken Bacon", price: 12})
+addNewPizza({name: "BBQ chicken", price: 12})
+addNewPizza({name: "Spicy Sausage", price: 11})
 
-// placeOrder("Chicken Bacon")
-// completeOrder(1)
+placeOrder("Chicken Bacon")
+completeOrder(1)
 
-// console.log("Menu:", menu)
-// console.log("Cash in register", cashInRegister)
-// console.log("Order queue", orderQueue)
+console.log("Menu:", menu)
+console.log("Cash in register", cashInRegister)
+console.log("Order queue", orderQueue)
 
-// getPizzaDetail("Chicken Bacon")
 
 
