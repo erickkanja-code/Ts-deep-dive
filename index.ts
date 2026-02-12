@@ -1,4 +1,5 @@
 type Pizza = {
+    id: number
     name: string,
     price: number
 }
@@ -12,11 +13,11 @@ type Order = {
 
 
 
-const menu = [
-    {name: "Magherita", price: 8},
-    {name: "Pepperoni", price: 10},
-    {name: "Hawaiian", price: 10},
-    {name: "Veggie", price: 9}
+const menu: Pizza[] = [
+    {id: 1, name: "Magherita", price: 8},
+    {id: 2, name: "Pepperoni", price: 10},
+    {id: 3, name: "Hawaiian", price: 10},
+    {id: 4, name: "Veggie", price: 9}
 ]
 
 let cashInRegister = 100
@@ -49,9 +50,9 @@ function completeOrder(orderId: number) {
     return order
 }
 
-addNewPizza({ name: "Chicken Bacon", price: 12})
-addNewPizza({ name: "BBQ chicken", price: 12})
-addNewPizza({ name: "Spicy Sausage", price: 11})
+addNewPizza({id: 5, name: "Chicken Bacon", price: 12})
+addNewPizza({id: 6, name: "BBQ chicken", price: 12})
+addNewPizza({id: 7, name: "Spicy Sausage", price: 11})
 
 placeOrder("Chicken Bacon")
 completeOrder(1)
