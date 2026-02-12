@@ -52,27 +52,28 @@ function completeOrder(orderId: number) {
 
 type PizzaDetail = string | number
 
-function getPizzaDetail(identifier: string | number){
+export function getPizzaDetail(identifier: string | number){
     if (typeof identifier === "string") {
         return menu.find((pizza) => pizza.name.toLowerCase() === identifier.toLowerCase() )
-    } else {
+    } else if (typeof identifier === 'number') {
         return menu.find((pizza) => pizza.id === identifier)
-
+    } else {
+        throw new TypeError("Parameter identifier must be a string or number")
     }
 }
 
 
-addNewPizza({id: 5, name: "Chicken Bacon", price: 12})
-addNewPizza({id: 6, name: "BBQ chicken", price: 12})
-addNewPizza({id: 7, name: "Spicy Sausage", price: 11})
+// addNewPizza({id: 5, name: "Chicken Bacon", price: 12})
+// addNewPizza({id: 6, name: "BBQ chicken", price: 12})
+// addNewPizza({id: 7, name: "Spicy Sausage", price: 11})
 
-placeOrder("Chicken Bacon")
-completeOrder(1)
+// placeOrder("Chicken Bacon")
+// completeOrder(1)
 
-console.log("Menu:", menu)
-console.log("Cash in register", cashInRegister)
-console.log("Order queue", orderQueue)
+// console.log("Menu:", menu)
+// console.log("Cash in register", cashInRegister)
+// console.log("Order queue", orderQueue)
 
-getPizzaDetail("Chicken Bacon")
+// getPizzaDetail("Chicken Bacon")
 
 
