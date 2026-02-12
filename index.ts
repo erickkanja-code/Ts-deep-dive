@@ -50,6 +50,18 @@ function completeOrder(orderId: number) {
     return order
 }
 
+type PizzaDetail = string | number
+
+function getPizzaDetail(identifier: string | number){
+    if (typeof identifier === "string") {
+        return menu.find((pizza) => pizza.name.toLowerCase() === identifier.toLowerCase() )
+    } else {
+        return menu.find((pizza) => pizza.id === identifier)
+
+    }
+}
+
+
 addNewPizza({id: 5, name: "Chicken Bacon", price: 12})
 addNewPizza({id: 6, name: "BBQ chicken", price: 12})
 addNewPizza({id: 7, name: "Spicy Sausage", price: 11})
@@ -61,5 +73,6 @@ console.log("Menu:", menu)
 console.log("Cash in register", cashInRegister)
 console.log("Order queue", orderQueue)
 
+getPizzaDetail("Chicken Bacon")
 
 
